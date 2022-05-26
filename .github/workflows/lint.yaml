@@ -11,10 +11,6 @@ jobs:
       - name: Prepare
         run: npm ci
       - name: Lint AWS module
-        run: |
-          cd aws
-          npm run lint
+        run: npm run lint-aws
       - name: Lint GCP module
-        run: |
-          cd gcp
-          npm run lint
+        run: npm run lint-gcp

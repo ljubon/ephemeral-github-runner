@@ -14,7 +14,8 @@
         "octokit": "^1.7.1"
     },
     "scripts": {
-        "lint": "tslint --project .",
+        "lint-aws": "tslint --project ./aws",
+        "lint-gcp": "tslint --project ./gcp",
         "cleanup-runners": "ts-node cleanup-runners.ts"
     }
 }
