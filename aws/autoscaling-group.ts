@@ -12,7 +12,7 @@ export const autoscalingGroup = launchTemplate.then(lt => {
             values: [ String(process.env.AWS_REGION) ],
         }]
     }));
-    
+
     return new aws.autoscaling.Group("ghrunner-asg", {
         availabilityZones: availabilityZones.names,
         desiredCapacity: config.requireNumber("runnersCount"),

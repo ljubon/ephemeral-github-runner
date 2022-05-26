@@ -7,7 +7,7 @@ import { Buffer } from 'buffer';
 
 const config = new pulumi.Config();
 const size = config.require("machineType");
-   
+
 export const launchTemplate = startupScript.then(script => {
     const ami = aws.ec2.getAmiOutput({
         filters: [{
@@ -16,7 +16,7 @@ export const launchTemplate = startupScript.then(script => {
         }],
         owners: ["099720109477"], // This owner ID is Amazon
     });
-    
+
     const launchTemplateArgs: LaunchTemplateArgs = {
         namePrefix: "ghrunner-asg",
         imageId: ami.id,

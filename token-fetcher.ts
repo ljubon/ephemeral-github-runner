@@ -5,7 +5,7 @@ const config = new pulumi.Config();
 const owner = config.require("owner");
 const repo = config.require("repo");
 
-async function fetchToken(): Promise<String> {
+async function fetchToken(): Promise<string> {
   const app = new App({
     appId: Number(process.env.APP_ID),
     privateKey: String(process.env.APP_PRIVATE_KEY),
@@ -20,15 +20,15 @@ async function fetchToken(): Promise<String> {
         const {
           data: { token }
         } = await octokit.rest.actions.createRegistrationTokenForRepo({
-          owner: owner,
-          repo: repo,
+          owner,
+          repo,
         });
         return token;
       }
     }
   }
 
-  throw `No installation found for ${owner}`;
+  throw new Error(`No installation found for ${owner}`);
 }
 
 export const registrationToken = fetchToken();
