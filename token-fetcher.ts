@@ -1,7 +1,9 @@
-import * as pulumi from "@pulumi/pulumi";
+import * as pulumi from '@pulumi/pulumi';
 import { App } from "octokit";
 
 const config = new pulumi.Config();
+const owner = config.require("owner");
+const repo = config.require("repo");
 
 async function fetchToken(): Promise<String> {
   const app = new App({
@@ -13,20 +15,20 @@ async function fetchToken(): Promise<String> {
     app.octokit.rest.apps.listInstallations,
   )) {
     for (const installation of installations) {
-      if (installation.account!.login === config.require("owner")) {
+      if (installation.account!.login === owner) {
         const octokit = await app.getInstallationOctokit(installation.id);
         const {
           data: { token }
         } = await octokit.rest.actions.createRegistrationTokenForRepo({
-          owner: config.require("owner"),
-          repo: config.require("repo"),
+          owner: owner,
+          repo: repo,
         });
         return token;
       }
     }
   }
 
-  throw `No installation found for ${config.require("owner")}`;
+  throw `No installation found for ${owner}`;
 }
 
 export const registrationToken = fetchToken();

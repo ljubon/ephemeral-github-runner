@@ -7,6 +7,8 @@
     },
     "dependencies": {
         "@pulumi/gcp": "^6.0.0",
+        "@pulumi/aws": "^4.0.0",
+        "@pulumi/awsx": "^0.30.0",
         "@pulumi/pulumi": "^3.0.0",
         "mustache": "^4.2.0",
         "octokit": "^1.7.1"

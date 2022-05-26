@@ -1,6 +1,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as gcp from "@pulumi/gcp";
-import { startupScript } from "./startupScript";
+import { startupScript } from "../startupScript";
 import { subnetwork } from "./network";
 
 const config = new pulumi.Config();
@@ -31,7 +31,8 @@ export const instanceTemplate = new gcp.compute.InstanceTemplate(`${baseName}-in
     scheduling,
     disks: [bootDisk],
     metadata: {
-        "startup-script": pulumi.secret(startupScript),
+        // "startup-script": pulumi.secret(startupScript),
+        "startup-script": startupScript,
     },
     networkInterfaces: [{
         subnetwork: subnetwork.id,

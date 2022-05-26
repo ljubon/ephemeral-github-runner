@@ -13,7 +13,7 @@ export const startupScript = registrationToken.then(token => {
         labels: config.require("labels"),
         token,
     };
-    const template = readFileSync('./register-runner.sh', 'utf-8');
+    const template = readFileSync('../register-runner.sh', 'utf-8');
     // Disable all escaping
     Mustache.escape = (text: string): string => {
         return text;

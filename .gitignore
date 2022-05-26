@@ -1,7 +1,11 @@
 /bin/
 /node_modules/
+/aws/node_modules/
+/gcp/node_modules/
 .env
 config.yaml
 gcp.json
+*.pem
+*.cer
 ghapp.pem
 key.json
