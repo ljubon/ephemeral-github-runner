@@ -17,7 +17,6 @@ export const launchTemplate = aws.getCallerIdentity({}).then(identity => {
             }],
             owners: [identity.accountId],
         });
-    
         const launchTemplateArgs: LaunchTemplateArgs = {
             namePrefix: "ghrunner-asg",
             imageId: ami.id,
