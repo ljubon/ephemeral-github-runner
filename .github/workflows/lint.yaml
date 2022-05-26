@@ -10,5 +10,11 @@ jobs:
       - uses: actions/checkout@v1
       - name: Prepare
         run: npm ci
-      - name: Lint
-        run: npm run lint
+      - name: Lint AWS module
+        run: |
+          cd aws
+          npm run lint
+      - name: Lint GCP module
+        run: |
+          cd gcp
+          npm run lint
