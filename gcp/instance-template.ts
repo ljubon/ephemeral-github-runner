@@ -31,7 +31,6 @@ export const instanceTemplate = new gcp.compute.InstanceTemplate(`${baseName}-in
     scheduling,
     disks: [bootDisk],
     metadata: {
-        // "startup-script": pulumi.secret(startupScript),
         "startup-script": startupScript,
     },
     networkInterfaces: [{
