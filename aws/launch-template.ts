@@ -21,7 +21,7 @@ export const launchTemplate = aws.getCallerIdentity({}).then(identity => {
             namePrefix: "ghrunner-asg",
             imageId: ami.id,
             instanceType: size,
-            keyName: "gr-oss-team",
+            keyName: "gross-devops-us-east-1",
             vpcSecurityGroupIds: [ securityGroup.id ],
             userData: Buffer.from(script).toString("base64"),
             tags: {
