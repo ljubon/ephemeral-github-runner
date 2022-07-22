@@ -15,7 +15,6 @@ export const instance = aws.getCallerIdentity({}).then(identity => {
             }],
             owners: [identity.accountId],
         });
-
         const runnerInstance = new aws.ec2.Instance("ghrunner", {
             monitoring: true,
             ami: ami.id,
@@ -31,8 +30,7 @@ export const instance = aws.getCallerIdentity({}).then(identity => {
                 volumeSize: config.requireNumber("bootDiskSizeInGB"),
                 volumeType: config.require("bootDiskType")
             }],
-        }); 
-
+        });
         return runnerInstance;
     });
 })
