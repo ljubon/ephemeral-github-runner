@@ -1,5 +1,5 @@
 import * as aws from "@pulumi/aws";
-import { LaunchTemplateArgs } from "@pulumi/aws/ec2";
+import { LaunchConfiguration, LaunchTemplateArgs } from "@pulumi/aws/ec2";
 import * as pulumi from "@pulumi/pulumi";
 import { securityGroup } from './security-group';
 import { startupScript } from '../startupScript';
@@ -18,6 +18,16 @@ export const launchTemplate = aws.getCallerIdentity({}).then(identity => {
             owners: [identity.accountId],
         });
         const launchTemplateArgs: LaunchTemplateArgs = {
+            monitoring: {
+                enabled: true,
+            },
+            blockDeviceMappings: [{
+                deviceName: "/dev/sda1",
+                ebs: {
+                    volumeSize: config.requireNumber("bootDiskSizeInGB"),
+                    volumeType: config.require("bootDiskType")
+                },
+            }],
             namePrefix: "ghrunner-asg",
             imageId: ami.id,
             instanceType: size,
