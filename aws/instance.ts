@@ -19,7 +19,6 @@ export const instance = aws.getCallerIdentity({}).then(identity => {
             monitoring: true,
             ami: ami.id,
             instanceType: machineType,
-            // keyName: "gross-devops-us-east-1",
             tags: { "Name": `${config.require("repo")} Github Runner` },
             vpcSecurityGroupIds: [ securityGroup.id ],
             userData: Buffer.from(script).toString("base64"),
