@@ -5,12 +5,14 @@ import { registrationToken } from "./token-fetcher";
 /* tslint:disable-next-line:no-var-requires */
 const Mustache = require("mustache");
 const config = new pulumi.Config();
+let stack = pulumi.getStack();
 
 export const startupScript = registrationToken.then(token => {
     const templateView = {
         owner: config.require("owner"),
         repo: config.require("repo"),
         labels: config.require("labels"),
+        runner_name: stack,
         token,
     };
     const template = readFileSync('../register-runner.sh', 'utf-8');
