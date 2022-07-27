@@ -21,7 +21,7 @@ export const instance = aws.getCallerIdentity({}).then(identity => {
             instanceType: machineType,
             tags: { "Name": `${config.require("repo")} Github Runner` },
             vpcSecurityGroupIds: [ securityGroup.id ],
-            userData: Buffer.from(script).toString("base64"),
+            userDataBase64: Buffer.from(script).toString("base64"),
             ebsBlockDevices: [{
                 deviceName: "/dev/sda1",
                 volumeSize: config.requireNumber("bootDiskSizeInGB"),
