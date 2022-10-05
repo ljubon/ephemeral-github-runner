@@ -19,7 +19,7 @@ export const instance = aws.getCallerIdentity({}).then(identity => {
             monitoring: true,
             ami: ami.id,
             instanceType: machineType,
-            tags: { "Name": `${config.require("repo")} Github Runner` },
+            tags: getTags(),
             vpcSecurityGroupIds: [ securityGroup.id ],
             userData: Buffer.from(script).toString("base64"),
             ebsBlockDevices: [{
@@ -31,3 +31,12 @@ export const instance = aws.getCallerIdentity({}).then(identity => {
         return runnerInstance;
     });
 })
+
+function getTags(){
+    let tags = {
+        "Name": `${config.require("repo")} Github Runner`,
+        "map-migrated": "d-server-01068mdjl5jze3"
+    };
+
+    return tags;
+}
