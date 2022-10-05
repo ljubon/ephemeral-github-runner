@@ -5,7 +5,7 @@ import { registrationToken } from "./token-fetcher";
 /* tslint:disable-next-line:no-var-requires */
 const Mustache = require("mustache");
 const config = new pulumi.Config();
-let stack = pulumi.getStack();
+const stack = pulumi.getStack();
 
 export const startupScript = registrationToken.then(token => {
     const templateView = {

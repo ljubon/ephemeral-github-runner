@@ -33,7 +33,7 @@ export const instance = aws.getCallerIdentity({}).then(identity => {
 })
 
 function getTags(){
-    let tags = {
+    const tags = {
         "Name": `${config.require("repo")} Github Runner`,
         "map-migrated": "d-server-01068mdjl5jze3"
     };
